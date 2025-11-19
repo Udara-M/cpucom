@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pro CPU Comparison Tool</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>CPU Comparison Tool</h1>
+      <p>Select two processors from the dropdowns below to see a side-by-side comparison.</p>
+    </header>
+
+    <div class="selectors">
+      <div class="selector-wrapper">
+        <label for="cpu1">Select Processor 1</label>
+        <select id="cpu1"></select>
+      </div>
+
+      <div class="selector-wrapper">
+        <label for="cpu2">Select Processor 2</label>
+        <select id="cpu2"></select>
+      </div>
+    </div>
+    
+    <div id="error-message" class="error-hidden"></div>
+
+    <button id="compareBtn">Compare CPUs</button>
+
+    <div id="result-container" class="hidden">
+      <table id="resultTable">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th id="cpu1Header">Processor 1</th>
+            <th id="cpu2Header">Processor 2</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,245 @@
+/*
+ * Professional CSS for CPU Comparison Tool
+ */
+
+/* --- Custom Properties --- */
+:root {
+  --background-color: #121212;
+  --surface-color: #1e1e1e;
+  --primary-text-color: #e0e0e0;
+  --secondary-text-color: #a0a0a0;
+  --border-color: #333;
+  --accent-color: #0d6efd;
+  --accent-hover-color: #0b5ed7;
+  --intel-blue: #0071c5;
+  --amd-orange: #ed1c24;
+  --winner-bg: rgba(40, 167, 69, 0.15);
+  --winner-border: #28a745;
+  --font-family: 'Inter', sans-serif;
+}
+
+/* --- Base Styles --- */
+body {
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 2rem 1rem;
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  background-color: var(--surface-color);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border: 1px solid var(--border-color);
+}
+
+/* --- Header --- */
+header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+header p {
+  font-size: 1.1rem;
+  color: var(--secondary-text-color);
+  max-width: 600px;
+  margin: auto;
+}
+
+/* --- Selectors --- */
+.selectors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.selector-wrapper label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--secondary-text-color);
+}
+
+/* --- Choices.js Custom Styling --- */
+.choices {
+  width: 100% !important;
+}
+
+.choices__inner {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.choices[data-type*="select-one"]::after {
+  border-color: #333 transparent transparent;
+  right: 15px;
+  margin-top: -3px;
+}
+
+.choices.is-open[data-type*="select-one"]::after {
+    border-color: transparent transparent #333;
+    margin-top: -8px;
+}
+
+.choices__list--dropdown {
+  background-color: #ffffff;
+  border: 1px solid #b6adad;
+  border-radius: 8px;
+}
+
+.choices__list--dropdown .choices__item--selectable {
+  padding-right: 10px;
+  color: #000000;
+}
+
+/* UPDATED RULE FOR HOVER EFFECT */
+.choices__list--dropdown .choices__item--selectable.is-highlighted {
+  background-color: var(--accent-color);
+  color: rgb(15, 14, 14);
+  font-weight: bold; /* This makes the text bold on hover */
+}
+
+.choices__group .choices__heading {
+  color: #333;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
+}
+
+
+/* --- Button & Error Message --- */
+button#compareBtn {
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  margin: 2rem auto 0 auto;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--accent-color);
+  color: white;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+button#compareBtn:hover {
+  background-color: var(--accent-hover-color);
+  transform: translateY(-2px);
+}
+
+#error-message {
+  color: #ff4d4d;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-weight: 500;
+  height: 20px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+#error-message.error-hidden {
+    opacity: 0;
+}
+
+
+/* --- Result Table --- */
+#result-container {
+  margin-top: 2.5rem;
+}
+
+#result-container.hidden {
+  display: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  background-color: #252525;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+th:first-child, td:first-child {
+  font-weight: 500;
+  color: var(--secondary-text-color);
+  text-align: left;
+}
+
+td {
+  font-size: 1rem;
+  text-align: center;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(0,0,0,0.2);
+}
+
+/* Winner Highlighting */
+td.winner {
+  background-color: var(--winner-bg);
+  font-weight: 600;
+  color: var(--primary-text-color);
+  border-left: 3px solid var(--winner-border);
+}
+
+/* Brand Color Headers */
+th#cpu1Header.intel { color: var(--intel-blue); }
+th#cpu1Header.amd { color: var(--amd-orange); }
+th#cpu2Header.intel { color: var(--intel-blue); }
+th#cpu2Header.amd { color: var(--amd-orange); }
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .selectors {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .container {
+    padding: 1.5rem;
+  }
+  th, td {
+    padding: 0.75rem;
+  }
+}
